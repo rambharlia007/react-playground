@@ -1,19 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Login from "./component/Login";
+import Header from "./component/Header";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import Route from "react-router-dom/Route";
 
 class App extends Component {
+  state = { isLoggedIn: false };
+  loginCallBack = value => {
+    this.setState({ isLoggedIn: value });
+  };
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div>
+          {this.state.isLoggedIn && (
+            <Route path="/" exact strict component={Header} />
+          )}
+          {!this.state.isLoggedIn && (
+            <Route
+              path="/"
+              exact
+              strict
+              render={props => {
+                return <Login onLoginCallBack={this.loginCallBack} />;
+              }}
+            />
+          )}
+        </div>
+      </Router>
     );
   }
 }
