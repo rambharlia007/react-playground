@@ -22,59 +22,55 @@ class Login extends Component {
 
   render() {
     return (
-      <form class="form-signin">
-        <img
-          class="mb-4"
-          src="../../assets/brand/bootstrap-solid.svg"
-          alt=""
-          width="72"
-          height="72"
-        />
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">
-          Email address
-        </label>
-        <input
-          type="email"
-          id="inputEmail"
-          class="form-control"
-          placeholder="Email address"
-          name="userName"
-          value={this.state.userName}
-          onChange={e => {
-            this.HandleInputChange(e);
-          }}
-        />
-        <label for="inputPassword" class="sr-only">
-          Password
-        </label>
-        <input
-          type="password"
-          id="inputPassword"
-          class="form-control"
-          placeholder="Password"
-          name="password"
-          onChange={e => {
-            this.HandleInputChange(e);
-          }}
-        />
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-          </label>
+      <div class="login-padding">
+        <div class="row justify-content-center">
+          <div class="col-md-3 align-self-center align-items-center">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="login-header div-logo">
+                    <a href="javascript:void(0)">
+                      <img class="logo" src="../../images/logo1.png" />
+                    </a>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="userName"
+                      placeholder="Enter email"
+                      value={this.state.userName}
+                      onChange={this.HandleInputChange}
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.HandleInputChange}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-block text-left"
+                    onClick={this.Authenticate}
+                    disabled={!(this.state.userName && this.state.password)}
+                  >
+                    <span class="pull-left">
+                      <i class="fa fa-lock" />
+                      Log In
+                    </span>
+                    <i class="fa fa-lg fa-spinner fa-spin pull-right" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <button
-          class="btn btn-lg btn-primary btn-block"
-          type="submit"
-          onClick={() => {
-            this.Authenticate();
-          }}
-          disabled={!(this.state.userName && this.state.password)}
-        >
-          Sign in
-        </button>
-        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-      </form>
+      </div>
     );
   }
 }
