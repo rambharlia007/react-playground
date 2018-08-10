@@ -6,6 +6,7 @@ import Header from "./component/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Route from "react-router-dom/Route";
+import Interviewee from "./component/New/Interviewee";
 
 class App extends Component {
   state = { isLoggedIn: false };
@@ -16,10 +17,26 @@ class App extends Component {
     return (
       <Router>
         <div>
-          {this.state.isLoggedIn && (
-            <Route path="/" exact strict component={Header} />
-          )}
           {!this.state.isLoggedIn && (
+            <div>
+              <Route path="/" exact strict component={Header} />
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#">Library</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Data
+                  </li>
+                </ol>
+              </nav>
+              <Route path="/" exact strict component={Interviewee} />
+            </div>
+          )}
+          {this.state.isLoggedIn && (
             <Route
               path="/"
               exact

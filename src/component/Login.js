@@ -24,7 +24,7 @@ class Login extends Component {
     return (
       <div class="login-padding">
         <div class="row justify-content-center">
-          <div class="col-md-3 align-self-center align-items-center">
+          <div class="col-md-4 align-self-center align-items-center">
             <div class="card">
               <div class="card-body">
                 <form>
