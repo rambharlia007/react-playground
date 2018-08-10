@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "./Login.css";
+import { Redirect } from "react-router";
+import AuthService from "../services/auth";
 
 class Login extends Component {
-  state = { userName: "", password: "" };
+  state = { userName: "", password: "", isUserLoggedIn: false };
 
   constructor(props) {
     super(props);
+    this.auth = new AuthService();
   }
 
   HandleInputChange = event => {
@@ -16,11 +19,18 @@ class Login extends Component {
   };
 
   Authenticate = () => {
-    console.log("");
-    this.props.onLoginCallBack(true);
+    var self = this;
+    this.auth.login().then(data => {
+      self.setState({ isUserLoggedIn: true });
+      self.props.authenticateCallBack(true);
+    });
   };
 
   render() {
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/applicant/new" />;
+    }
+
     return (
       <div class="login-padding">
         <div class="row justify-content-center">

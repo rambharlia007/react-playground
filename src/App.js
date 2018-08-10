@@ -1,51 +1,60 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Login from "./component/Login";
-import Header from "./component/Header";
+import Login from "./components/Login";
+import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Route from "react-router-dom/Route";
-import Interviewee from "./component/New/Interviewee";
+import Interviewee from "./components/New/Interviewee";
+import { Redirect } from "react-router";
+import PrivateRoute from "./components/PrivateRoute";
+import AuthService from "./services/auth";
+
+var authService = new AuthService();
 
 class App extends Component {
-  state = { isLoggedIn: false };
-  loginCallBack = value => {
-    this.setState({ isLoggedIn: value });
+  state = { isAuthenticated: false };
+  componentDidMount() {
+    if (authService.getLocalStorageData("id_token")) {
+      this.setState({ isAuthenticated: true });
+    }
+  }
+
+  authenticateCallBackHandler = () => {
+    this.setState({ isAuthenticated: true });
   };
+
   render() {
     return (
       <Router>
         <div>
-          {!this.state.isLoggedIn && (
-            <div>
-              <Route path="/" exact strict component={Header} />
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="#">Home</a>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a href="#">Library</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Data
-                  </li>
-                </ol>
-              </nav>
-              <Route path="/" exact strict component={Interviewee} />
-            </div>
-          )}
-          {this.state.isLoggedIn && (
-            <Route
-              path="/"
-              exact
-              strict
-              render={props => {
-                return <Login onLoginCallBack={this.loginCallBack} />;
-              }}
-            />
-          )}
+          <Route
+            path="/login"
+            exact
+            strict
+            render={props => {
+              return (
+                <Login
+                  {...props}
+                  authenticateCallBack={this.authenticateCallBackHandler}
+                  isAuthenticated={this.state.isAuthenticated}
+                />
+              );
+            }}
+          />
+          <PrivateRoute
+            exact
+            path="/applicant/new"
+            isAuthenticated={this.state.isAuthenticated}
+            component={Interviewee}
+          />
+          <PrivateRoute
+            exact
+            path="/"
+            isAuthenticated={this.state.isAuthenticated}
+            component={Interviewee}
+          />
         </div>
       </Router>
     );
