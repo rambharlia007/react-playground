@@ -10,12 +10,20 @@ import Interviewee from "./components/New/Interviewee";
 import { Redirect } from "react-router";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthService from "./services/auth";
+import Applicant from "./components/List/Applicant";
 
 var authService = new AuthService();
 
 class App extends Component {
   state = { isAuthenticated: false };
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    if (authService.getLocalStorageData("id_token")) {
+      this.setState({ isAuthenticated: true });
+    }
+  }
+
+  componentWillMount() {
     if (authService.getLocalStorageData("id_token")) {
       this.setState({ isAuthenticated: true });
     }
@@ -45,7 +53,7 @@ class App extends Component {
           />
           <PrivateRoute
             exact
-            path="/applicant/new"
+            path="/new/applicant"
             isAuthenticated={this.state.isAuthenticated}
             component={Interviewee}
           />
@@ -54,6 +62,12 @@ class App extends Component {
             path="/"
             isAuthenticated={this.state.isAuthenticated}
             component={Interviewee}
+          />
+          <PrivateRoute
+            exact
+            path="/list/applicant"
+            isAuthenticated={this.state.isAuthenticated}
+            component={Applicant}
           />
         </div>
       </Router>

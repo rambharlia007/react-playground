@@ -28,7 +28,7 @@ class Login extends Component {
 
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to="/applicant/new" />;
+      return <Redirect to="/new/applicant" />;
     }
 
     return (
