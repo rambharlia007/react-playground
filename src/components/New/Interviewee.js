@@ -10,6 +10,13 @@ import {
   Card,
   CardBody
 } from "mdbreact";
+import PropTypes from "prop-types";
+import Highlight from "react-highlight";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import DatePicker from "material-ui/DatePicker";
+import ReactMaterialSelect from "react-material-select";
+import "react-material-select/lib/css/reactMaterialSelect.css";
+
 const pStyle = {
   padding: "0px"
 };
@@ -24,8 +31,16 @@ class Interviewee extends Component {
     ctc: 0,
     ectc: "",
     recruitedBy: "",
-    reason: ""
+    reason: "",
+    value: "pomsky"
   };
+
+  componentDidMount() {
+    let datePickerHr = document
+      .querySelector(".datepicker-wrapper")
+      .getElementsByTagName("hr")[0];
+    datePickerHr.style.border = "none";
+  }
 
   submitApplicant = () => {
     var data = {
@@ -57,63 +72,108 @@ class Interviewee extends Component {
       ...options
     }).then(response => response.json());
   }
-
+  getSelectValue = value => {
+    console.log(value);
+  };
   render() {
+    const options = [
+      {
+        label: "Pomsky",
+        value: "pomsky"
+      },
+      {
+        label: "Golden Doodle",
+        value: "goldenDoodle",
+        disabled: true
+      }
+    ];
+
     return (
-      <Container>
-        <Row>
-          <Col md="6">
-            <Card>
-              <CardBody>
-                <form>
-                  <p className="h4 text-center py-4">Applicant</p>
-                  <div className="grey-text">
+      <Row className="row justify-content-md-center">
+        <Col md="8">
+          <Card>
+            <CardBody>
+              <form>
+                <p className="h4 text-center py-4">Applicant</p>
+                <div className="row">
+                  <div className="col-md-6">
+                    <Input type="text" label="Name" />
+                  </div>
+                  <div>
+                    <div className="md-form">
+                      <MuiThemeProvider>
+                        <div className="datepicker-wrapper">
+                          <DatePicker
+                            style={{
+                              borderBottom: "1px solid #bdbdbd",
+                              height: "3rem"
+                            }}
+                            id="datepicker"
+                            textFieldStyle={{ width: "100%" }}
+                            hintText="DOB"
+                            label="DOB"
+                          />
+                        </div>
+                      </MuiThemeProvider>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-6">
+                    <Input type="text" label="Native Place" />
+                  </div>
+                  <div className="col-md-6">
+                    <Input type="text" label="Highest Qualification" />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-4">
+                    <Input label="University" />
+                  </div>
+
+                  <div className="col-md-4">
+                    <Input label="Year" />
+                  </div>
+
+                  <div className="col-md-4">
+                    <Input label="Score %" />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
                     <Input
-                      label="Your name"
-                      icon="user"
-                      group
-                      type="text"
-                      validate
-                      error="wrong"
-                      success="right"
-                    />
-                    <Input
-                      label="Your email"
-                      icon="envelope"
-                      group
-                      type="email"
-                      validate
-                      error="wrong"
-                      success="right"
-                    />
-                    <Input
-                      label="Confirm your email"
-                      icon="exclamation-triangle"
-                      group
-                      type="text"
-                      validate
-                      error="wrong"
-                      success="right"
-                    />
-                    <Input
-                      label="Your password"
-                      icon="lock"
-                      group
-                      type="password"
-                      validate
+                      type="textarea"
+                      label="Current Location and Distance"
                     />
                   </div>
-                  <div className="text-center py-4 mt-3">
-                    <Button color="cyan" type="submit">
-                      Register
-                    </Button>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <ReactMaterialSelect
+                      label="Choose favourite film character"
+                      resetLabel="None of them"
+                      onChange={this.callbackFunction2}
+                    >
+                      <option dataValue="Pulp Fiction">Vincent Vega</option>
+                      <option dataValue="Star Wars">Darth Vader</option>
+                      <option dataValue="Lord Of The Rings">
+                        Bilbo Baggins
+                      </option>
+                      <option dataValue="Terminator">Terminator</option>
+                      <option dataValue="The Godfather">Vito Corleone</option>
+                    </ReactMaterialSelect>
                   </div>
-                </form>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+                  <div className="col-md-6" />
+                </div>
+                <div className="text-center">
+                  <Button>Submit</Button>
+                </div>
+              </form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }

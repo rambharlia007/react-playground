@@ -41,6 +41,8 @@ class App extends Component {
     return (
       <Router>
         <div>
+          {this.isAuthenticated}
+          <Header />
           <Route
             path="/login"
             exact
@@ -55,24 +57,26 @@ class App extends Component {
               );
             }}
           />
-          <PrivateRoute
-            exact
-            path="/new/applicant"
-            isAuthenticated={this.state.isAuthenticated}
-            component={Interviewee}
-          />
-          <PrivateRoute
-            exact
-            path="/"
-            isAuthenticated={this.state.isAuthenticated}
-            component={Interviewee}
-          />
-          <PrivateRoute
-            exact
-            path="/list/applicant"
-            isAuthenticated={this.state.isAuthenticated}
-            component={Applicant}
-          />
+          <main>
+            <PrivateRoute
+              exact
+              path="/new/applicant"
+              isAuthenticated={this.state.isAuthenticated}
+              component={Interviewee}
+            />
+            <PrivateRoute
+              exact
+              path="/"
+              isAuthenticated={this.state.isAuthenticated}
+              component={Interviewee}
+            />
+            <PrivateRoute
+              exact
+              path="/list/applicant"
+              isAuthenticated={this.state.isAuthenticated}
+              component={Applicant}
+            />
+          </main>
         </div>
       </Router>
     );
