@@ -29,7 +29,7 @@ class Header extends Component {
     });
   }
   render() {
-    const bgPink = { backgroundColor: "#ec407a" };
+    const bgPink = { backgroundColor: "#2e2e2ee0" };
     return (
       <header>
         <Navbar style={bgPink} dark expand="md" scrolling fixed="top">
@@ -40,7 +40,7 @@ class Header extends Component {
           <Collapse isOpen={this.state.collapse} navbar>
             <NavbarNav left>
               <NavItem active>
-                <NavLink to="#">Home</NavLink>
+                <NavLink to="/list/applicant">Applicant</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="#">Features</NavLink>

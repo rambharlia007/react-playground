@@ -8,17 +8,16 @@ class Applicant extends Component {
     this.state = {
       data: []
     };
-    this.makeData();
   }
 
-  makeData = () => {
+  componentWillMount() {
     this.fetch(`http://localhost:3500/applicant`, {
       method: "GET"
     }).then(res => {
       this.setState({ data: res });
       // this.setState({ loading: false });
     });
-  };
+  }
 
   fetch(url, options) {
     // performs api calls sending the required authentication headers
@@ -33,11 +32,14 @@ class Applicant extends Component {
     }).then(response => response.json());
   }
   render() {
-    const { data, pages, loading } = this.state;
+    const { data } = this.state;
+    if (data && data.length == 0) return null;
     return (
-      <div class="row">
-        <div class="col-md-12">
+      <div className="row">
+        <div className="col-md-12">
           <ReactTable
+            data={data}
+            className="-striped -highlight"
             columns={[
               {
                 columns: [
@@ -62,9 +64,6 @@ class Applicant extends Component {
                 ]
               }
             ]}
-            data={data}
-            defaultPageSize={10}
-            className=" -highlight"
           />
           <br />
         </div>
