@@ -7,7 +7,22 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
-  background-color: #f5f5f5 !important;
+  background-color: #eeee !important;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.ReactTable {
+  background-color: white;
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.rt-resizable-header-content {
+  font-weight: bold;
+}
+.-header {
+  background-color: rgba(0, 0, 0, 0.15);
 }

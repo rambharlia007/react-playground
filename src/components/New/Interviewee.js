@@ -11,11 +11,8 @@ import {
   CardBody
 } from "mdbreact";
 import PropTypes from "prop-types";
-import Highlight from "react-highlight";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
-import ReactMaterialSelect from "react-material-select";
-import "react-material-select/lib/css/reactMaterialSelect.css";
 
 const pStyle = {
   padding: "0px"
@@ -149,21 +146,7 @@ class Interviewee extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6">
-                    <ReactMaterialSelect
-                      label="Choose favourite film character"
-                      resetLabel="None of them"
-                      onChange={this.callbackFunction2}
-                    >
-                      <option dataValue="Pulp Fiction">Vincent Vega</option>
-                      <option dataValue="Star Wars">Darth Vader</option>
-                      <option dataValue="Lord Of The Rings">
-                        Bilbo Baggins
-                      </option>
-                      <option dataValue="Terminator">Terminator</option>
-                      <option dataValue="The Godfather">Vito Corleone</option>
-                    </ReactMaterialSelect>
-                  </div>
+                  <div className="col-md-6" />
                   <div className="col-md-6" />
                 </div>
                 <div className="text-center">

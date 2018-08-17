@@ -11,6 +11,7 @@ import { Redirect } from "react-router";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthService from "./services/auth";
 import Applicant from "./components/List/Applicant";
+import Test from "./components/List/Test";
 
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -75,6 +76,12 @@ class App extends Component {
               path="/list/applicant"
               isAuthenticated={this.state.isAuthenticated}
               component={Applicant}
+            />
+            <PrivateRoute
+              exact
+              path="/list/test"
+              isAuthenticated={this.state.isAuthenticated}
+              component={Test}
             />
           </main>
         </div>

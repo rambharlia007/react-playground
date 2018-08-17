@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import Axios from "axios";
 
 class Applicant extends Component {
   constructor(props) {
@@ -8,7 +9,6 @@ class Applicant extends Component {
     this.state = {
       data: []
     };
-    this.makeData();
   }
 
   makeData = () => {
@@ -35,7 +35,7 @@ class Applicant extends Component {
   render() {
     const { data, pages, loading } = this.state;
     return (
-      <div class="row">
+      <div class="row" style={{ padding: "100px" }}>
         <div class="col-md-12">
           <ReactTable
             columns={[
@@ -47,7 +47,7 @@ class Applicant extends Component {
                   },
                   {
                     Header: "Company",
-                    id: "company",
+                    //   id: "company",
                     accessor: "company"
                   },
                   {
@@ -62,8 +62,26 @@ class Applicant extends Component {
                 ]
               }
             ]}
+            // manual
             data={data}
-            defaultPageSize={10}
+            onFetchData={(state, instance) => {
+              // show the loading overlay
+              this.setState({ loading: true });
+              // fetch your data
+              Axios.post("http://localhost:3500/applicant", {
+                page: state.page,
+                pageSize: state.pageSize,
+                applicant: state.sorted,
+                applicant: state.filtered
+              }).then(res => {
+                // Update react-table
+                this.setState({
+                  data: res.data.rows,
+                  pages: res.data.pages,
+                  loading: false
+                });
+              });
+            }}
             className=" -highlight"
           />
           <br />
