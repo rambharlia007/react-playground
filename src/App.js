@@ -23,9 +23,6 @@ class App extends Component {
   state = { isAuthenticated: false };
   constructor(props) {
     super(props);
-    if (authService.getLocalStorageData("id_token")) {
-      this.setState({ isAuthenticated: true });
-    }
   }
 
   componentWillMount() {
@@ -42,8 +39,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          {this.isAuthenticated}
-          <Header />
+          {this.state.isAuthenticated && <Header />}
+
           <Route
             path="/login"
             exact
@@ -59,30 +56,32 @@ class App extends Component {
             }}
           />
           <main>
-            <PrivateRoute
-              exact
-              path="/new/applicant"
-              isAuthenticated={this.state.isAuthenticated}
-              component={Interviewee}
-            />
-            <PrivateRoute
-              exact
-              path="/"
-              isAuthenticated={this.state.isAuthenticated}
-              component={Interviewee}
-            />
-            <PrivateRoute
-              exact
-              path="/list/applicant"
-              isAuthenticated={this.state.isAuthenticated}
-              component={Applicant}
-            />
-            <PrivateRoute
-              exact
-              path="/list/test"
-              isAuthenticated={this.state.isAuthenticated}
-              component={Test}
-            />
+            <div style={{ paddingTop: "80px" }}>
+              <PrivateRoute
+                exact
+                path="/new/applicant"
+                isAuthenticated={this.state.isAuthenticated}
+                component={Interviewee}
+              />
+              <PrivateRoute
+                exact
+                path="/"
+                isAuthenticated={this.state.isAuthenticated}
+                component={Interviewee}
+              />
+              <PrivateRoute
+                exact
+                path="/list/applicant"
+                isAuthenticated={this.state.isAuthenticated}
+                component={Applicant}
+              />
+              <PrivateRoute
+                exact
+                path="/list/test"
+                isAuthenticated={this.state.isAuthenticated}
+                component={Test}
+              />
+            </div>
           </main>
         </div>
       </Router>

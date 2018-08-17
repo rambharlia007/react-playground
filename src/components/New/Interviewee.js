@@ -8,11 +8,13 @@ import {
   Button,
   Fa,
   Card,
-  CardBody
+  CardBody,
+  CardTitle
 } from "mdbreact";
-import PropTypes from "prop-types";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
+//import ReactMaterialSelect from "react-material-select";
+//import "react-material-select/lib/css/reactMaterialSelect.css";
 
 const pStyle = {
   padding: "0px"
@@ -33,10 +35,10 @@ class Interviewee extends Component {
   };
 
   componentDidMount() {
-    let datePickerHr = document
-      .querySelector(".datepicker-wrapper")
-      .getElementsByTagName("hr")[0];
-    datePickerHr.style.border = "none";
+    // let datePickerHr = document
+    //   .querySelector(".datepicker-wrapper")
+    //   .getElementsByTagName("hr")[0];
+    // datePickerHr.style.border = "none";
   }
 
   submitApplicant = () => {
@@ -86,77 +88,122 @@ class Interviewee extends Component {
     ];
 
     return (
-      <Row className="row justify-content-md-center">
-        <Col md="8">
-          <Card>
-            <CardBody>
-              <form>
-                <p className="h4 text-center py-4">Applicant</p>
-                <div className="row">
-                  <div className="col-md-6">
-                    <Input type="text" label="Name" />
-                  </div>
-                  <div>
-                    <div className="md-form">
-                      <MuiThemeProvider>
-                        <div className="datepicker-wrapper">
-                          <DatePicker
-                            style={{
-                              borderBottom: "1px solid #bdbdbd",
-                              height: "3rem"
-                            }}
-                            id="datepicker"
-                            textFieldStyle={{ width: "100%" }}
-                            hintText="DOB"
-                            label="DOB"
+      <div>
+        <Row className="justify-content-md-center">
+          <div className="col-md-10">
+            <p className="h4 text-left">Candidate Evaluation Form</p>
+          </div>
+          <Col md="10">
+            <Card>
+              <CardBody>
+                <form>
+                  <div className="row" style={{ paddingTop: "15px" }}>
+                    <div className="col-md-3">
+                      <p className="h6 text-center">Personal details</p>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <Input type="text" label="Name" />
+                        </div>
+                        <div className="col-md-12">
+                          <Input type="text" label="DOB" />
+                        </div>
+                        <div className="col-md-12">
+                          <Input type="text" label="Native Place" />
+                        </div>
+                        <div className="col-md-12">
+                          <Input
+                            type="textarea"
+                            label="Current Location and Distance"
                           />
                         </div>
-                      </MuiThemeProvider>
+                        <div className="col-md-12 text-left">
+                          <Button className="btn-block">Submit</Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-md-3">
+                      <p className="h6 text-center">Education details</p>
+
+                      <div className="row">
+                        <div className="col-md-12">
+                          <Input type="text" label="Highest Qualification" />
+                        </div>
+                        <div className="col-md-12">
+                          <Input label="University" />
+                        </div>
+
+                        <div className="col-md-12">
+                          <Input label="Year" />
+                        </div>
+
+                        <div className="col-md-12">
+                          <Input label="Score %" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <p className="h6 text-center">Professional details</p>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <Input label="Total Experience" />
+                        </div>
+                        <div className="col-md-6">
+                          <Input label="Relevant Experient" />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <Input label="Current Organisation" />
+                        </div>
+                        <div className="col-md-6">
+                          <Input label="Current Designation" />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <Input label="Skill Set" />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-3">
+                          <Input label="Current CTC" />
+                        </div>
+                        <div className="col-md-2">
+                          <Input label="Fixed" />
+                        </div>
+                        <div className="col-md-2">
+                          <Input label="Variable" />
+                        </div>
+                        <div className="col-md-3">
+                          <Input label="Expected salary" />
+                        </div>
+                        <div className="col-md-2">
+                          <Input label="Hike" />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <Input label="Any other offers in hand" />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <Input label="Notice period (Min)" />
+                        </div>
+                        <div className="col-md-6">
+                          <Input label="Notice period (Max)" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-md-6">
-                    <Input type="text" label="Native Place" />
-                  </div>
-                  <div className="col-md-6">
-                    <Input type="text" label="Highest Qualification" />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-4">
-                    <Input label="University" />
-                  </div>
-
-                  <div className="col-md-4">
-                    <Input label="Year" />
-                  </div>
-
-                  <div className="col-md-4">
-                    <Input label="Score %" />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6">
-                    <Input
-                      type="textarea"
-                      label="Current Location and Distance"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6" />
-                  <div className="col-md-6" />
-                </div>
-                <div className="text-center">
-                  <Button>Submit</Button>
-                </div>
-              </form>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+                </form>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
