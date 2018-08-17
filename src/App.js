@@ -12,10 +12,12 @@ import PrivateRoute from "./components/PrivateRoute";
 import AuthService from "./services/auth";
 import Applicant from "./components/List/Applicant";
 import Test from "./components/List/Test";
+import TempForm from "./components/New/TempForm";
 
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 var authService = new AuthService();
 
@@ -80,6 +82,12 @@ class App extends Component {
                 path="/list/test"
                 isAuthenticated={this.state.isAuthenticated}
                 component={Test}
+              />
+              <PrivateRoute
+                exact
+                path="/new/tempform"
+                isAuthenticated={this.state.isAuthenticated}
+                component={TempForm}
               />
             </div>
           </main>

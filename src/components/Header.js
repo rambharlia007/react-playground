@@ -29,7 +29,7 @@ class Header extends Component {
     });
   }
   render() {
-    const bgPink = { backgroundColor: "#2e2e2ee0" };
+    const bgPink = { backgroundColor: "#498fab" };
     return (
       <header>
         <Navbar style={bgPink} dark expand="md" scrolling fixed="top">
