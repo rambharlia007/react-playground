@@ -3,6 +3,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Axios from "axios";
 import _ from "lodash";
+import ReactTooltip from "react-tooltip";
 class Applicant extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +73,7 @@ class Applicant extends Component {
         <div className="col-md-5">
           <button
             type="button"
-            className="btn btn-primary pull-right"
+            className="btn btn-default pull-right"
             onClick={() => {
               this.props.history.replace("/new/applicant");
             }}
@@ -80,6 +81,7 @@ class Applicant extends Component {
             Create New Applicant
           </button>
         </div>
+
         <div className="col-md-10">
           <div className="card">
             <div className="card-body">
@@ -94,33 +96,57 @@ class Applicant extends Component {
                         accessor: "name"
                       },
                       {
-                        Header: "Company",
-                        //   id: "company",
-                        accessor: "company"
+                        Header: "Recruiter",
+                        accessor: "recruiter"
                       },
                       {
-                        Header: "technology",
-                        accessor: "technology"
+                        Header: "Experience",
+                        accessor: "totalExperience"
                       },
                       {
-                        Header: "phone Number",
-                        id: "phoneNumber",
-                        accessor: "phoneNumber"
+                        Header: "Organisation",
+                        accessor: "organisation"
+                      },
+                      {
+                        Header: "Designation",
+                        accessor: "designation"
+                      },
+                      {
+                        Header: "Skills",
+                        accessor: "skillSet"
+                      },
+                      {
+                        Header: "Notice Period",
+                        accessor: "minNoticePeriod",
+                        Cell: row => (
+                          <div>
+                            <span className="pull-right">{row.value}</span>
+                          </div>
+                        )
+                      },
+                      {
+                        Header: "Summary",
+                        Cell: row => (
+                          <div>
+                            <span>
+                              <i class="fa fa-info-circle" aria-hidden="true" />
+                            </span>
+                          </div>
+                        )
                       }
                     ]
                   }
                 ]}
-                pageSizeOptions={[5, 10, 15, 18, 20, 30]}
+                pageSizeOptions={[5, 10, 15, 20, 30]}
                 manual // Forces table not to paginate or sort automatically, so we can handle it server-side
                 data={data}
                 pages={pages} // Display the total number of pages
                 loading={loading} // Display the loading overlay when we need it
                 onFetchData={this.fetchData} // Request new data when things change
                 filterable
-                defaultPageSize={18}
+                defaultPageSize={15}
                 className=" -highlight"
               />
-              <br />
             </div>
           </div>
         </div>

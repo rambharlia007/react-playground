@@ -28,7 +28,7 @@ class Login extends Component {
 
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to="/new/applicant" />;
+      return <Redirect to="/list/applicant" />;
     }
 
     return (
@@ -70,10 +70,10 @@ class Login extends Component {
                     disabled={!(this.state.userName && this.state.password)}
                   >
                     <span class="pull-left">
-                      <i class="fa fa-lock" />
+                      {/* <i class="fa fa-lock" /> */}
                       Log In
                     </span>
-                    <i class="fa fa-lg fa-spinner fa-spin pull-right" />
+                    {/* <i class="fa fa-lg fa-spinner fa-spin pull-right" /> */}
                   </button>
                 </form>
               </div>
