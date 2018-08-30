@@ -34,53 +34,53 @@ class TempForm extends Component {
         title: "",
         body: ""
       },
-      formData: {
-        name: "",
-        dateOfBirth: "",
-        nativePlace: "",
-        location: "",
-        qualification: "",
-        university: "",
-        year: "",
-        score: "",
-        totalExperience: "",
-        relevantExperience: "",
-        organisation: "",
-        designation: "",
-        skillSet: "",
-        actualCTC: "",
-        fixedComponent: "",
-        variableComponent: "",
-        expectedCTC: "",
-        hike: "",
-        otherOffers: "",
-        minNoticePeriod: "",
-        maxNoticePeriod: ""
-      },
       // formData: {
-      //   name: "Ram",
-      //   dateOfBirth: "15-03-1992",
-      //   nativePlace: "Bengaluru",
-      //   location: "KR Puram",
-      //   qualification: "BE",
-      //   university: "BU",
-      //   year: "2015",
-      //   score: "70",
-      //   totalExperience: "3",
-      //   relevantExperience: "3",
-      //   organisation: "DevOn",
-      //   designation: "Developer",
-      //   skillSet: "Mean stack, Dotnet",
-      //   actualCTC: "3",
-      //   fixedComponent: "2",
-      //   variableComponent: "1",
-      //   expectedCTC: "6",
-      //   hike: "3",
-      //   otherOffers: "No",
-      //   minNoticePeriod: "2",
-      //   maxNoticePeriod: "2",
-      //   recruiter: "Srini"
+      //   name: "",
+      //   dateOfBirth: "",
+      //   nativePlace: "",
+      //   location: "",
+      //   qualification: "",
+      //   university: "",
+      //   year: "",
+      //   score: "",
+      //   totalExperience: "",
+      //   relevantExperience: "",
+      //   organisation: "",
+      //   designation: "",
+      //   skillSet: "",
+      //   actualCTC: "",
+      //   fixedComponent: "",
+      //   variableComponent: "",
+      //   expectedCTC: "",
+      //   hike: "",
+      //   otherOffers: "",
+      //   minNoticePeriod: "",
+      //   maxNoticePeriod: ""
       // },
+      formData: {
+        name: "Ram",
+        dateOfBirth: "15-03-1992",
+        nativePlace: "Bengaluru",
+        location: "KR Puram",
+        qualification: "BE",
+        university: "BU",
+        year: "2015",
+        score: "70",
+        totalExperience: "3",
+        relevantExperience: "3",
+        organisation: "DevOn",
+        designation: "Developer",
+        skillSet: "Mean stack, Dotnet",
+        actualCTC: "3",
+        fixedComponent: "2",
+        variableComponent: "1",
+        expectedCTC: "6",
+        hike: "3",
+        otherOffers: "No",
+        minNoticePeriod: "2",
+        maxNoticePeriod: "2",
+        recruiter: "Srini"
+      },
       activeTab: this.tabs[0]
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -94,8 +94,12 @@ class TempForm extends Component {
     });
     var modalData = { title: "saving...", body: "Save in progress" };
     this.setState({ modalData: modalData });
+    var postData = [];
     const formData = { ...this.state.formData };
-    Axios.post("http://localhost:3500/applicant", formData)
+    for (var i = 0; i < 1000; i++) {
+      postData.push(formData);
+    }
+    Axios.post("http://localhost:3500/applicant", postData)
       .then(response => {
         this.setState({
           modalData: { title: "Success", body: "saved successfully." }
@@ -107,7 +111,6 @@ class TempForm extends Component {
         });
       });
   };
-
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;

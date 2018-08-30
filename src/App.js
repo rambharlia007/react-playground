@@ -13,6 +13,7 @@ import AuthService from "./services/auth";
 import Applicant from "./components/List/Applicant";
 import Test from "./components/List/Test";
 import TempForm from "./components/New/TempForm";
+import datatabletest from "./components/List/datatabletest";
 
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -88,6 +89,12 @@ class App extends Component {
                 path="/new/tempform"
                 isAuthenticated={this.state.isAuthenticated}
                 component={TempForm}
+              />
+              <PrivateRoute
+                exact
+                path="/List/datatabletest"
+                isAuthenticated={this.state.isAuthenticated}
+                component={datatabletest}
               />
             </div>
           </main>

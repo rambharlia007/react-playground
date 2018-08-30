@@ -8,8 +8,6 @@ body {
   display: flex;
   -ms-flex-align: center;
   background-color: #eeee !important;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .ReactTable {
