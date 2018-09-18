@@ -12,7 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AuthService from "./services/auth";
 import Applicant from "./components/List/Applicant";
 import Test from "./components/List/Test";
-import TempForm from "./components/New/TempForm";
+import Process from "./components/New/Process";
 import datatabletest from "./components/List/datatabletest";
 
 import "font-awesome/css/font-awesome.min.css";
@@ -86,9 +86,9 @@ class App extends Component {
               />
               <PrivateRoute
                 exact
-                path="/new/tempform"
+                path="/new/process"
                 isAuthenticated={this.state.isAuthenticated}
-                component={TempForm}
+                component={Process}
               />
               <PrivateRoute
                 exact

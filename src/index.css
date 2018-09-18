@@ -18,6 +18,14 @@ body {
   color: #333;
 }
 
+.custom-datatable {
+  background-color: white;
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
 .rt-resizable-header-content {
   font-weight: bold;
 }

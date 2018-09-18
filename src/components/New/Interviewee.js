@@ -14,7 +14,7 @@ import {
   CardBody,
   CardTitle
 } from "mdbreact";
-
+var faker = require("faker");
 const pStyle = {
   padding: "0px"
 };
@@ -95,8 +95,16 @@ class TempForm extends Component {
     var modalData = { title: "saving...", body: "Save in progress" };
     this.setState({ modalData: modalData });
     var postData = [];
-    const formData = { ...this.state.formData };
-    for (var i = 0; i < 1000; i++) {
+
+    for (var i = 0; i < 10000; i++) {
+      let formData = { ...this.state.formData };
+      formData.name = faker.name.firstName();
+      formData.recruiter = faker.name.lastName();
+      formData.relevantExperience = faker.random.number();
+      formData.organisation = faker.company.companyName();
+      formData.designation = faker.name.title();
+      formData.maxNoticePeriod = faker.random.number();
+      formData.minNoticePeriod = faker.random.number();
       postData.push(formData);
     }
     Axios.post("http://localhost:3500/applicant", postData)

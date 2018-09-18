@@ -14,19 +14,27 @@ class datatabletest extends Component {
           return json;
         }
       },
-      columns: [
-        { data: "name" },
-        { data: "dateOfBirth" },
-        { data: "nativePlace" },
-        { data: "location" },
-        { data: "university" },
-        { data: "designation" }
-      ],
       fixedHeader: {
         header: true,
         footer: true
       },
-      lengthMenu: [[15, 20, 25, 30], [15, 20, 25, 30]]
+      columns: [
+        {
+          data: "name",
+          render: function(data, type, row, meta) {
+            return `<span><a href="${
+              window.location.origin
+            }/new/process">${data}</a></span>`;
+          }
+        },
+        { data: "recruiter" },
+        { data: "totalExperience" },
+        { data: "organisation" },
+        { data: "designation" },
+        { data: "skillSet" },
+        { data: "minNoticePeriod" }
+      ],
+      lengthMenu: [[15, 20, 25, 30, 100], [15, 20, 25, 30, 100]]
     });
   }
   render() {
@@ -52,15 +60,20 @@ class datatabletest extends Component {
         <div className="col-md-10">
           <div className="card">
             <div className="card-body">
-              <table ref="main" class="display" style={{ width: "100%" }}>
+              <table
+                ref="main"
+                className="display custom-datatable"
+                style={{ width: "100%" }}
+              >
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Extn.</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Recruiter</th>
+                    <th>Experience</th>
+                    <th>Organisation</th>
+                    <th>Designation</th>
+                    <th>Skills</th>
+                    <th>NoticePeriod</th>
                   </tr>
                 </thead>
               </table>{" "}
