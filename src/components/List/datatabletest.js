@@ -24,7 +24,7 @@ class datatabletest extends Component {
           render: function(data, type, row, meta) {
             return `<span><a href="${
               window.location.origin
-            }/new/process">${data}</a></span>`;
+            }/new/process/${data}">${data}</a></span>`;
           }
         },
         { data: "recruiter" },

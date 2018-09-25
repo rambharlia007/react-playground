@@ -86,7 +86,7 @@ class App extends Component {
               />
               <PrivateRoute
                 exact
-                path="/new/process"
+                path="/new/process/:id"
                 isAuthenticated={this.state.isAuthenticated}
                 component={Process}
               />

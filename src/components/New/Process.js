@@ -3,101 +3,71 @@ import Header from "../../components/Header";
 import $ from "jquery";
 import Axios from "axios";
 import "bootstrap/dist/js/bootstrap.min.js";
+import FitmentEvaluationRound from "../Common/FitmentEvaluationRound";
+import TechnicalRound from "../Common/TechnicalRound";
+
+const roundType = {
+  fitmentEvaluationRound: 1,
+
+  tech1: 2,
+  tech2: 3,
+  codeEvaluationRound: 4,
+  cdlRound: 5,
+  mdRound: 6
+};
 
 class Process extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentRoundAssignedTo: "",
+      nextRoundAssignedTo: "",
+      smsContent: "",
+      currentRoundType: roundType.fitmentEvaluationRound
+    };
   }
 
   render() {
     return (
       <div className="row justify-content-md-center">
-        <div className="col-md-8">
-          <h6>Round-1 assigned to Nidhin</h6>
+        <div className="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Fitment Evaluation Form</h5>
               <form>
                 <div class="form-group">
-                  <label>What impressed you most about the candidate?</label>
+                  <label>Next round</label>
+                  <select class="form-control">
+                    <option>Technical round 1</option>
+                    <option>Technical round 2</option>
+                    <option>Code evaluation</option>
+                    <option>Presentation round</option>
+                    <option>CDL Evaluation</option>
+                    <option>Managing Director Evaluation</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Assign to</label>
+                  <select class="form-control">
+                    <option>I-1</option>
+                    <option>I-2</option>
+                    <option>I-3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Message</label>
                   <textarea class="form-control" rows="3" />
                 </div>
-                <div class="form-group">
-                  <label>
-                    What according to you, can the candidate improve on?
-                  </label>
-                  <textarea class="form-control" rows="3" />
-                </div>
-                <div class="form-group">
-                  <label>
-                    Would the candidate make a good fit at Prowareness?
-                  </label>
-                  <textarea class="form-control" rows="3" />
-                </div>
-                <div class="form-group">
-                  <label>Motivation factors</label>
-
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox1">
-                      Challenging work/Projects
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox2">
-                      Designation/role
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox3">
-                      Financial aspect
-                    </label>
-                  </div>
-                  <textarea
-                    class="form-control"
-                    rows="3"
-                    placeholder="Comments"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Passion</label>
-
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox1">
-                      Writing Blogs
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox2">
-                      Open source projects
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox3">
-                      Association with any Groups / Conferences
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline pull-right">
-                    <input class="form-check-input" type="checkbox" />
-                    <label class="form-check-label" for="inlineCheckbox3">
-                      Technical Certifications
-                    </label>
-                  </div>
-                  <textarea
-                    class="form-control"
-                    rows="3"
-                    placeholder="Commitment [*] (number of companies changed (descending order) & reasons)"
-                  />
-                </div>
+                <button type="button" className="btn btn-default pull-right">
+                  Send Email
+                </button>
               </form>
             </div>
           </div>
+        </div>
+        <div className="col-md-6">
+          {this.state.currentRoundType == roundType.fitmentEvaluationRound && (
+            <TechnicalRound />
+          )}
         </div>
       </div>
     );
